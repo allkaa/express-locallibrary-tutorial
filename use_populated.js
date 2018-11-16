@@ -34,7 +34,7 @@ Book.findOne({title: 'The Name of the Wind (The Kingkiller Chronicle, #1)'})
 .exec(function (err, book) {
   if (err) return console.log(err);
   console.log('The author is %s', book.author.name); // use virtual property `name`.  Prints "The author is Rothfuss, Patrick"
-  console.log('The genre is %s', book.genre[0].name); // prints "Fantasy"
+  console.log('The genre is %s', book.genre[0].name); // use real property prints "Fantasy"
 });
 
 // All done, disconnect from database

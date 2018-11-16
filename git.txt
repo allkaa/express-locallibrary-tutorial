@@ -154,7 +154,7 @@ To https://github.com/allkaa/testsite.git
 akaarna@debian930:~/web-projects/test-site$ 
 
 ===================================================
-Create new remote empty repository:
+Create new remote empty repository https://github.com/allkaa/express-locallibrary-tutorial:
 https://github.com/allkaa/express-locallibrary-tutorial
 git remote add origin https://github.com/allkaa/express-locallibrary-tutorial.git
 git push -u origin master
@@ -179,7 +179,7 @@ Branch master set up to track remote branch master from origin.
 akaarna@debian930:~/express-locallibrary-tutorial$ 
 
 ===================================================
-Create new remote empty repository:
+Create new remote empty repository https://github.com/allkaa/nodejstest:
 
 https://github.com/allkaa/nodejstest
 and then
