@@ -1,0 +1,209 @@
+https://github.com/
+
+allkaa
+h...3!
+allkaa@yahoo.com
+
+https://github.com/allkaa/
+
+https://guides.github.com/introduction/git-handbook/
+
+first learning repository:
+allkaa/hello-world
+
+akaarna@debian930:~/scripts$ git clone https://github.com/mdn/learning-area
+Cloning into 'learning-area'...
+remote: Counting objects: 2916, done.
+remote: Compressing objects: 100% (40/40), done.
+remote: Total 2916 (delta 21), reused 20 (delta 9), pack-reused 2866
+Receiving objects: 100% (2916/2916), 78.75 MiB | 2.99 MiB/s, done.
+Resolving deltas: 100% (1384/1384), done.
+akaarna@debian930:~/scripts$ 
+
+
+akaarna@debian930:~/scripts$ cd learning-area
+akaarna@debian930:~/scripts/learning-area$ ls
+accessibility  css  html  javascript  LICENSE  README.md  tools-testing
+akaarna@debian930:~/scripts/learning-area$ 
+
+You can update the learning-area repository with any changes made to the master version on GitHub with the following steps:
+In your command prompt/terminal, go inside the learning-area directory using cd.
+For example, if you were in the parent directory:
+    $ cd learning-area
+Update the repository using the following command:
+    $ git pull
+
+Create new remote empty repository:
+https://github.com/allkaa/testsite
+
+akaarna@debian930:~/scripts/learning-area$ cd ~
+akaarna@debian930:~$ cd web-projects/test-site
+akaarna@debian930:~/web-projects/test-site$ ls
+images  index.html  scripts  styles
+akaarna@debian930:~/web-projects/test-site$ git remote add origin https://github.com/allkaa/testsite.git
+akaarna@debian930:~/web-projects/test-site$ git push -u origin master
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 39.16 KiB | 0 bytes/s, done.
+Total 5 (delta 0), reused 0 (delta 0)
+To https://github.com/allkaa/testsite.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+
+created README.md
+
+akaarna@debian930:~/web-projects/test-site$ git push --set-upstream origin master
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 340 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/allkaa/testsite.git
+   8e7d3ad..34e1a2c  master -> master
+Branch master set up to track remote branch master from origin.
+
+modifying README.md
+
+akaarna@debian930:~/web-projects/test-site$ git push --set-upstream origin master
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 349 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/allkaa/testsite.git
+   34e1a2c..66e6538  master -> master
+Branch master set up to track remote branch master from origin.
+
+akaarna@debian930:~/web-projects/test-site$ git add README.md
+akaarna@debian930:~/web-projects/test-site$ git commit -m "add README to initial commit"
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean
+
+akaarna@debian930:~/web-projects/test-site$ git push --set-upstream origin master
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Branch master set up to track remote branch master from origin.
+Everything up-to-date
+
+akaarna@debian930:~/web-projects/test-site$ 
+
+README.md modification #2
+
+akaarna@debian930:~/web-projects/test-site$ git push
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 375 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/allkaa/testsite.git
+   66e6538..0419a8c  master -> master
+akaarna@debian930:~/web-projects/test-site$ 
+
+README.md remote modification #3
+
+akaarna@debian930:~/web-projects/test-site$ git pull
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/allkaa/testsite
+   0419a8c..d0ab95c  master     -> origin/master
+Updating 0419a8c..d0ab95c
+Fast-forward
+ README.md | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+akaarna@debian930:~/web-projects/test-site$ 
+
+Rename images/ png file locally:
+
+akaarna@debian930:~/web-projects/test-site$ git push
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 366 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/allkaa/testsite.git
+   d0ab95c..22382b3  master -> master
+akaarna@debian930:~/web-projects/test-site$ 
+
+modification index.html locally:
+
+akaarna@debian930:~/web-projects/test-site$ git push
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 314 bytes | 0 bytes/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/allkaa/testsite.git
+   22382b3..4e62604  master -> master
+akaarna@debian930:~/web-projects/test-site$ 
+
+===================================================
+Create new remote empty repository:
+https://github.com/allkaa/express-locallibrary-tutorial
+git remote add origin https://github.com/allkaa/express-locallibrary-tutorial.git
+git push -u origin master
+
+akaarna@debian930:~/express-locallibrary-tutorial$ git remote add origin https://github.com/allkaa/express-locallibrary-tutorial.git
+akaarna@debian930:~/express-locallibrary-tutorial$ git push -u origin master
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 5977, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (5536/5536), done.
+Writing objects: 100% (5977/5977), 4.85 MiB | 1.64 MiB/s, done.
+Total 5977 (delta 1065), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1065/1065), done.
+remote: 
+remote: Create a pull request for 'master' on GitHub by visiting:
+remote:      https://github.com/allkaa/express-locallibrary-tutorial/pull/new/master
+remote: 
+To https://github.com/allkaa/express-locallibrary-tutorial.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+akaarna@debian930:~/express-locallibrary-tutorial$ 
+
+===================================================
+Create new remote empty repository:
+
+https://github.com/allkaa/nodejstest
+and then
+git remote add origin https://github.com/allkaa/nodejstest.git
+git push -u origin master
+
+akaarna@debian930:~$ cd nodejs
+akaarna@debian930:~/nodejs$ ls -a
+.   apps.js     EventEmitterSample.js  formidableFormFileUpload.js  main.js     myfirstOld.js  oopjs.js      square.js          .vscode
+..  .directory  FileUploadbodyGet.js   .git                         myfirst.js  oojs.js        sleepTest.js  UrlParseSample.js
+
+akaarna@debian930:~/nodejs$ git remote add origin https://github.com/allkaa/nodejstest.git
+
+akaarna@debian930:~/nodejs$ git push -u origin master
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 122, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (119/119), done.
+Writing objects: 100% (122/122), 29.23 KiB | 0 bytes/s, done.
+Total 122 (delta 55), reused 0 (delta 0)
+remote: Resolving deltas: 100% (55/55), done.
+To https://github.com/allkaa/nodejstest.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+
+akaarna@debian930:~/nodejs$ 
