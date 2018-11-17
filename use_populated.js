@@ -35,6 +35,9 @@ Book.findOne({title: 'The Name of the Wind (The Kingkiller Chronicle, #1)'})
   if (err) return console.log(err);
   console.log('The author is %s', book.author.name); // use virtual property `name`.  Prints "The author is Rothfuss, Patrick"
   console.log('The genre is %s', book.genre[0].name); // use real property prints "Fantasy"
+  setTimeout(() => {
+    mongoose.connection.close();
+  }, 1000);
 });
 
 // All done, disconnect from database
