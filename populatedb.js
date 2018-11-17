@@ -216,11 +216,10 @@ async.series([
 // Optional callback
 function(err, results) {
     if (err) {
-        console.log('FINAL ERR: '+err);
+        console.log('FINAL ERROR: '+err);
     }
     else {
-        console.log('BOOKInstances: '+bookinstances);
-        
+        console.log('BOOKInstances created: '+bookinstances);
     }
     // All done, disconnect from database
     mongoose.connection.close();
