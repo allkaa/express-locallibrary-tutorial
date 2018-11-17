@@ -35,19 +35,19 @@ function findBook(title, i, lengthArr) {
   .exec(function (err, book) {
     if (err) {
       console.log('ERROR during findOne Book: ' + title);
-      //return 'ERROR during findOne Book: ' + title;
+      //return 'ERROR during findOne Book: ' + title; // model Book .findOne will be executed async later so return value has no sense.
     }
     else {
       if (book === null) {
         console.log('Not found => ' + title);
-        //return null;
+        //return null; // model Book .findOne will be executed async later so return value has no sense.
       }
       else {
         console.log('The title is %s', book.title); // use virtual property `name`.  Prints "The author is Rothfuss, Patrick"
         console.log('The author is %s', book.author.name); // use virtual property `name`.  Prints "The author is Rothfuss, Patrick"
         console.log('The genre is %s', book.genre[0].name); // use real property prints "Fantasy"
         //setTimeout(() => { mongoose.connection.close();}, 1000);
-        //return book;
+        //return book; // model Book .findOne will be executed async later so return value has no sense.
       }
     }
     if (i == lengthArr - 1) {
