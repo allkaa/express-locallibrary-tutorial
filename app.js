@@ -28,9 +28,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+app.use('/', indexRouter); // e.g. http://localhost:3000/ url
+app.use('/users', usersRouter); // e.g. http://localhost:3000/users url
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
