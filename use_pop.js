@@ -30,8 +30,8 @@ const BookInstance = require('./models/bookinstance');
 /*
 function findBook(title, i, lengthArr) {
   Book.findOne({title: title}) // model Book .findOne will be executed async later so return value has no sense.
-  .populate('author') //This populates the author id with actual author information!
-  .populate('genre') // Thie populates genre with actual info.
+  .populate('author') //This populates the author._id (type: Schema.Types.ObjectId) with actual author information! Otherwise author.name is undefined
+  .populate('genre') // Thie populates genre._id with actual info. Otherwise genre[i].name is undefined.
   .exec(function (err, book) {
     if (err) {
       console.log('ERROR during findOne Book: ' + title);
@@ -104,8 +104,8 @@ let genreId = `5beea91b8cfe0caf73ba65a3`;   // correct genre._id
 let authorId = `5beea91b8cfe0caf73ba659e`;  // correct author._id
 Book.
   find().
-  populate('author'). //This populates the author _id (type: Schema.Types.ObjectId) with actual author information! Otherwise author.name is undefined
-  populate('genre'). // Thie populates genre _id with actual info. Otherwise genre[i].name is undefined.
+  populate('author'). //This populates the author._id (type: Schema.Types.ObjectId) with actual author information! Otherwise author.name is undefined
+  populate('genre'). // Thie populates genre._id with actual info. Otherwise genre[i].name is undefined.
   where('genre').equals(genreId).    // Wrong Fantasy _id  //.gt(17).lt(50).  //Additional where query
   //where('genre').equals('5beea91b8cfe0caf73ba65a3').    // Fantasy _id  //.gt(17).lt(50).  //Additional where query
   where('author').equals(authorId).   // Patrick Rothfuss _id  //.gt(17).lt(50).  //Additional where query
