@@ -99,16 +99,16 @@ function bookCb(err, result) {
   //*/
 }
 
-//let genreId = `5beea91b8cfe0caf73ba65a9`; // wrong genreId value.
-let genreId = `5beea91b8cfe0caf73ba65a3`;
-let authorId = `5beea91b8cfe0caf73ba659e`;
+//let genreId = `5beea91b8cfe0caf73ba65a9`; // wrong genre._id value (type: Schema.Types.ObjectId).
+let genreId = `5beea91b8cfe0caf73ba65a3`;   // correct genre._id
+let authorId = `5beea91b8cfe0caf73ba659e`;  // correct author._id
 Book.
   find().
-  populate('author'). //This populates the author ID with actual author information! Otherwise author.name is undefined
-  populate('genre'). // Thie populates genre ID with actual info. Otherwise genre[i].name is undefined.
-  where('genre').equals(genreId).    // Wrong Fantasy ID  //.gt(17).lt(50).  //Additional where query
-  //where('genre').equals('5beea91b8cfe0caf73ba65a3').    // Fantasy ID  //.gt(17).lt(50).  //Additional where query
-  where('author').equals(authorId).   // Patrick Rothfuss ID  //.gt(17).lt(50).  //Additional where query
+  populate('author'). //This populates the author _id (type: Schema.Types.ObjectId) with actual author information! Otherwise author.name is undefined
+  populate('genre'). // Thie populates genre _id with actual info. Otherwise genre[i].name is undefined.
+  where('genre').equals(genreId).    // Wrong Fantasy _id  //.gt(17).lt(50).  //Additional where query
+  //where('genre').equals('5beea91b8cfe0caf73ba65a3').    // Fantasy _id  //.gt(17).lt(50).  //Additional where query
+  where('author').equals(authorId).   // Patrick Rothfuss _id  //.gt(17).lt(50).  //Additional where query
   limit(25).
   sort({ title: 1 }). // Asc
   //sort({ title: -1 }). // Desc

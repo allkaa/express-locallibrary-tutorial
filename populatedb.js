@@ -34,8 +34,7 @@ function authorCreate(first_name, family_name, d_birth, d_death, cb) {
   if (d_birth != false) authordetail.date_of_birth = d_birth
   if (d_death != false) authordetail.date_of_death = d_death
   
-  var author = new Author(authordetail);
-       
+  var author = new Author(authordetail); // {type: Schema.Types.ObjectId} author._id will be created automatically.
   author.save(function (err) {
     if (err) {
       cb(err, null)
@@ -48,8 +47,7 @@ function authorCreate(first_name, family_name, d_birth, d_death, cb) {
 }
 
 function genreCreate(name, cb) {
-  var genre = new Genre({ name: name });
-       
+  var genre = new Genre({ name: name });  // {type: Schema.Types.ObjectId} genre._id will be created automatically.
   genre.save(function (err) {
     if (err) {
       cb(err, null);
@@ -70,7 +68,7 @@ function bookCreate(title, summary, isbn, author, genre, cb) {
   }
   if (genre != false) bookdetail.genre = genre
     
-  var book = new Book(bookdetail);    
+  var book = new Book(bookdetail);  // {type: Schema.Types.ObjectId} book._id will be created automatically. 
   book.save(function (err) {
     if (err) {
       cb(err, null)
@@ -91,7 +89,7 @@ function bookInstanceCreate(book, imprint, due_back, status, cb) {
   if (due_back != false) bookinstancedetail.due_back = due_back
   if (status != false) bookinstancedetail.status = status
     
-  var bookinstance = new BookInstance(bookinstancedetail);    
+  var bookinstance = new BookInstance(bookinstancedetail);  // {type: Schema.Types.ObjectId} bookinstance._id will be created automatically.
   bookinstance.save(function (err) {
     if (err) {
       console.log('ERROR CREATING BookInstance: ' + bookinstance);
