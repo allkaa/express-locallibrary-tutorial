@@ -8,4 +8,10 @@ router.get('/', function(req, res, next) {
   //  res.send("You're so cool");
 });
 
+// POST user listening. For test use e.g.:
+// curl -d "post test" localhost:3000/users
+router.post('/', function(req, res, next) {
+  res.render('index', { title: 'Express route for user POST' });
+});
+
 module.exports = router;
