@@ -34,7 +34,8 @@ app.use('/users', usersRouter); // e.g. http://localhost:3000/users url
 app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  res.send('Error 404 - Page not found!');
+  //next(createError(404));
 });
 
 // error handler

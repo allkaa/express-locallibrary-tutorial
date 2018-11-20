@@ -54,7 +54,7 @@ function findBook(title, cb) {
 }
 
 let bookTitle = [`The Name of the Wind (The Kingkiller Chronicle, #1000)`, `The Wise Man's Fear (The Kingkiller Chronicle, #2)`];  
-function findSomething(cb) {
+function findSomething(cb) { // parameter cb refers to async.series optional callback
   async.parallel([
     function(callback) {
         findBook(bookTitle[0], callback); // 'The Name of the Wind (The Kingkiller Chronicle, #1)'
@@ -63,34 +63,64 @@ function findSomething(cb) {
         findBook(bookTitle[1], callback); // 'The Name of the Wind (The Kingkiller Chronicle, #1)'
     }
   ],
-  cb); // optional callback from asyn.series.
-}
-
-async.series([
-  findSomething
-],
-// Optional callback after all parallel done.
-function(err, results) { // results is array of populated books found.
-  if (err) {
-    console.log('<=== All done logged errors below: ===>');
-    console.log('Error on find something: ' + err);
-  }
-  else {
-    console.log('<=== All done logged results below: ===>');
-    for (let i = 0; i < results[0].length; i++) {
-      if (typeof results[0][i] === 'string') {
-        console.log(`NB! ` + results[0][i]);
-      }
-      else {
-        console.log(results[0][i].title);
-        console.log(results[0][i].author.name);
+  cb // calling async.series optional callback
+  // or use parallel optional callback.
+  /*
+  // optional callback with arrayl of results when all parallel async finished.
+  function(err, results) { // results is array of populated books found.
+   if (err) {
+     console.log('<=== All parallel done logged errors below: ===>');
+     console.log('Error on find something: ' + err);
+    }
+   else {
+     console.log('<=== All parallel done logged results below: ===>');
+     for (let i = 0; i < results.length; i++) {
+       if (typeof results[i] === 'string') {
+         console.log(`NB! ` + results[0]);
+        }
+        else {
+          console.log(results[i].title);
+          console.log(results[i].author.name);
+        }
       }
     }
+    // All done, disconnect from database
+    console.log(`<=== Closing mongoose connection. ===>`)
+    mongoose.connection.close();
   }
-  // All done, disconnect from database
-  console.log(`<=== Closing mongoose connection. ===>`)
-  mongoose.connection.close();
-});
+  */
+  );
+}
+
+
+async.series([
+    findSomething
+  ],
+  // Optional callback after all series done.
+  function(err, results) { // results is array of populated books found.
+   if (err) {
+     console.log('<=== All series done logged errors below: ===>');
+     console.log('Error on find something: ' + err);
+    }
+   else {
+     console.log('<=== All series done logged results below: ===>');
+     for (let i = 0; i < results.length; i++) { // series results loop.
+       for (let j = 0; j < results[i].length; j++) { // parallel reslults loop.
+        if (typeof results[i][j] === 'string') {
+          console.log(`NB! ` + results[i][j]);
+         }
+         else {
+           console.log(results[i][j].title);
+           console.log(results[i][j].author.name);
+         }
+       }  // end of parallel reslults loop.
+      } // end of series results loop.
+    }
+    // All done, disconnect from database
+    console.log(`<=== Closing mongoose connection. ===>`)
+    mongoose.connection.close();
+  }
+);
 
 // All done, disconnect from database.
 // NB! We must close connection later manually otherwise connection will be closed BEFORE findOne() which is executed async after end of main script text.
