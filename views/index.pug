@@ -4,6 +4,11 @@ block content
   h1= title
   p Welcome to #[em LocalLibrary], a very basic Express website developed as a tutorial example on the Mozilla Developer Network.
 
+  p This is a line with #[em some emphasis] and #[strong strong text] markup.
+  p This line has un-escaped data: !{'<em> is emphasised</em>'} and escaped data: #{'<em> is not emphasised</em>'}. 
+    | This line follows on.
+  p= 'Evaluated and <em>escaped expression</em>:' + title
+
   h1 Dynamic content
 
   if error
