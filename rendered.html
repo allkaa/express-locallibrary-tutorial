@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Local Library Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          <ul class="sidebar-nav">
+            <li> <a href="/catalog">Home</a></li>
+            <li> <a href="/catalog/books">All books</a></li>
+            <li> <a href="/catalog/authors">All authors</a></li>
+            <li> <a href="/catalog/genres">All genres</a></li>
+            <li> <a href="/catalog/bookinstances">All book-instances</a></li>
+            <li> <hr></li>
+            <li> <a href="/catalog/author/create">Create new author</a></li>
+            <li> <a href="/catalog/genre/create">Create new genre</a></li>
+            <li> <a href="/catalog/book/create">Create new book</a></li>
+            <li> <a href="/catalog/bookinstance/create">Create new book instance (copy)</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-10">
+          <h1>Local Library Home</h1>
+          <p>Welcome to <em>LocalLibrary</em>, a very basic Express website developed as a tutorial example on the Mozilla Developer Network.</p>
+          <p>This is a line with <em>some emphasis</em> and <strong>strong text</strong> markup.</p>
+          <p>This line has un-escaped data: <em> is emphasised</em> and escaped data: &lt;em&gt; is not emphasised&lt;/em&gt;. This line follows on.</p>
+          <p>Evaluated and &lt;em&gt;escaped expression&lt;/em&gt;:Local Library Home</p>
+          <h1>Dynamic content</h1>
+          <p>The library has the following record counts:</p>
+          <ul>
+            <li><strong>Books:</strong> 7</li>
+            <li><strong>Copies:</strong> 11</li>
+            <li><strong>Copies available:</strong> 5 </li>
+            <li><strong>Authors:</strong> 5</li>
+            <li><strong>Genres:</strong> 3</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
