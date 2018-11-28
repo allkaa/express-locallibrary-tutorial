@@ -1,5 +1,14 @@
 'use strict';
 
+
+/**
+ * 
+ * @param {*} prevValue 
+ * @param {*} currentValue 
+ * @param {*} currIndex 
+ * @param {*} arrRef 
+ */
+
 function callback(prevValue, currentValue, currIndex, arrRef) {
   // initially prevValue = initValue and starts from first array element 
   // or prevVale is first element value if initValue is not used, and starts from second array element.
@@ -11,7 +20,6 @@ const callback2 = (prevValue, currentValue, currIndex, arrRef) => {
   // or prevVale is first element value if initValue is not used, and starts from second array element.
   return prevValue + currentValue;
 }
-
 
 let intArr = [10, 11, 12];
 let initValue = 1000;
