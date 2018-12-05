@@ -49,7 +49,7 @@ function findBook(title, cb) {
     else {
       console.log('The title is %s', book.title); // use property `title`.  Prints "he Name of the Wind (The Kingkiller Chronicle, #1)"
       console.log('The author is %s', book.author.name); // use populated property `author` virtual property `name`.  Prints "The author is Rothfuss, Patrick"
-      console.log('The genre is %s', book.genre[0].name); // use populated array property `genre[0]` property `name` prints "Fantasy"
+      console.log('The genre is %s', book.genre[0].name); // use populated array property `genre[0]` property `name`. Prints "Fantasy"
       //setTimeout(() => { mongoose.connection.close();}, 1000);
       cb(null, book); // callback as result case.
       }
