@@ -27,32 +27,33 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-//let book;
+//let book; - not needed!!!
 function findBook(title, cb) {
   Book.findOne({title: title})
   .populate('author') //This populates the author id with actual author information!
-  .populate('genre') // Thie populates genre with actual info.
+  .populate('genre') // Thie populates genre id with actual info.
   .exec(function (err, book) {
     if (err) {
       console.log('ERROR during findOne Book: ' + title);
-      cb(err, null);
+      cb(err, null); // callback as error case.
       return;
     }
     if (book === null) {
       console.log('Not found => ' + title);
       //cb('Not found => ' + title, null); // callback as error case wlll stop async serie immediately.
-      cb(null, 'Not found => ' + title); // callback as result case.
+      cb(null, 'Not found => ' + title); // callback as result case with not found message.
     }
     else {
-      console.log('The title is %s', book.title); // use virtual property `name`.  Prints "The author is Rothfuss, Patrick"
-      console.log('The author is %s', book.author.name); // use virtual property `name`.  Prints "The author is Rothfuss, Patrick"
-      console.log('The genre is %s', book.genre[0].name); // use real property prints "Fantasy"
+      console.log('The title is %s', book.title); // use property `title`.  Prints "he Name of the Wind (The Kingkiller Chronicle, #1)"
+      console.log('The author is %s', book.author.name); // use populated property `author` virtual property `name`.  Prints "The author is Rothfuss, Patrick"
+      console.log('The genre is %s', book.genre[0].name); // use populated array property `genre[0]` property `name` prints "Fantasy"
       //setTimeout(() => { mongoose.connection.close();}, 1000);
-      cb(null, book);
+      cb(null, book); // callback as result case.
       }
   });
 }
 
+// Test array or book titles to found.
 let bookTitle = [`The Name of the Wind (The Kingkiller Chronicle, #1000)`, `The Wise Man's Fear (The Kingkiller Chronicle, #2)`];  
 function findSomething(cb) { // parameter cb refers to async.series optional callback
   async.parallel([
