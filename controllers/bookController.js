@@ -43,14 +43,15 @@ exports.book_list = function(req, res) {
 };
 */
 
+// Find all models Book as Array of models wth all properties.
 exports.book_list = function(req, res, next) {
-
-    Book.find({}, 'title author')
-      .populate('author')
-      .exec(function (err, list_books) {
+    Book.find() // Find all models Book as Array of models wth all properties.
+    //Book.find({}, 'title author') // same as above line.
+      .populate('author') // populate author_ID with author info.
+      .exec(function (err, list_books) { // execure and then call callback function(err, result) where result as list_books will be Array of models Book wth all properties.
         if (err) { return next(err); }
-        //Successful, so render
-        res.render('book_list', { title: 'Book List', book_list: list_books });
+        //Successful, so render result.
+        res.render('book_list', { title: 'Book List', book_list: list_books }); // book_list.pug will be used with params title: and book_list as list_books Array of models Book wth all properties.
       });
       
   };
