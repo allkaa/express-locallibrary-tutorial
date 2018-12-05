@@ -4,7 +4,10 @@ console.log('This script checks populated some test books, authors, genres and b
 // node check_populatedb mongodb://allkaa:himka123@ds024778.mlab.com:24778/local_library
 
 /*
-// Get arguments passed on command line
+// Get arguments passed on command line as:
+// process.argv[0] "/home/akaarna/.nvm/versions/node/v8.9.4/bin/node"
+// process.argv[1] "/home/akaarna/express-locallibrary-tutorial/use_populated.js"
+// process.argv[2] "mongodb://allkaa:himka123@ds024778.mlab.com:24778/local_library"
 let userArgs = process.argv.slice(2);
 if (!userArgs[0].startsWith('mongodb://')) {
     console.log('ERROR: You need to specify a valid mongodb URL as the first argument');
