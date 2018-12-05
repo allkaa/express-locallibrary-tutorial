@@ -1,9 +1,22 @@
 'use strict';
 var BookInstance = require('../models/bookinstance');
 
+/* defalult.
 // Display list of all BookInstances.
 exports.bookinstance_list = function(req, res) {
     res.send('NOT IMPLEMENTED: BookInstance list');
+};
+*/
+
+// Display list of all BookInstances.
+exports.bookinstance_list = function(req, res, next) {
+    BookInstance.find() // find all models of BookInstance.
+      .populate('book') // populate with book info.
+      .exec(function (err, list_bookinstances) {
+        if (err) { return next(err); }
+        // Successful, so render result array with models BookInstance found in list_bookinstances.
+        res.render('bookinstance_list', { title: 'Book Instance List', bookinstance_list: list_bookinstances });
+        });
 };
 
 // Display detail page for a specific BookInstance.
