@@ -37,14 +37,14 @@ AuthorSchema
 AuthorSchema
 .virtual('dob_back_formatted')
 .get(function () {
-  return moment(this.date_of_birth).format('MMMM Do, YYYY');
+  return this.date_of_birth ? moment(this.date_of_birth).format('MMMM Do, YYYY') : '';
 });
 
 // Virtual property dod_back_formatted 
 AuthorSchema
 .virtual('dod_back_formatted')
 .get(function () {
-  return moment(this.date_of_death).format('MMMM Do, YYYY');
+  return this.date_of_death ? moment(this.date_of_death).format('MMMM Do, YYYY') : '';
 });
 
 //Export model
