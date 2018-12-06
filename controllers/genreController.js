@@ -1,5 +1,8 @@
 'use strict';
+
 var Genre = require('../models/genre');
+var Book = require('../models/book');
+var async = require('async');
 
 /* Default
 // Display list of all Genre.
@@ -19,9 +22,35 @@ exports.genre_list = function(req, res, next) {
       });
 };
 
+/*
 // Display detail page for a specific Genre.
 exports.genre_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Genre detail: ' + req.params.id);
+};
+*/
+
+// Display detail page for a specific Genre.
+// The ID of the required genre record is encoded at the end of the URL and extracted automatically based on the route definition (/genre/:id).
+exports.genre_detail = function(req, res, next) {
+    async.parallel({
+        genre: function(callback) {
+            Genre.findById(req.params.id) // find genre by id.
+              .exec(callback);
+        },
+        genre_books: function(callback) {
+          Book.find({ 'genre': req.params.id }) // find all models Book with genre id.
+          .exec(callback);
+        },
+    }, function(err, results) {
+        if (err) { return next(err); } // callback function after async genre and genre_books are done.
+        if (results.genre==null) { // No results = not found genre.
+            var err = new Error('Genre not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render
+        res.render('genre_detail', { title: 'Genre Detail', genre: results.genre, genre_books: results.genre_books } );
+    });
 };
 
 // Display Genre create form on GET.
