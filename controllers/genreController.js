@@ -30,8 +30,10 @@ exports.genre_detail = function(req, res) {
 */
 
 // Display detail page for a specific Genre.
-// The ID of the required genre record is encoded at the end of the URL and extracted automatically based on the route definition (/genre/:id).
-// req in Node IncommingMessage, req.params is Object {id: "5beea91b8cfe0caf73ba65a3"}, req.params.id is "5beea91b8cfe0caf73ba65a3"
+// The ID of the required genre record is encoded at the end of the URL and extracted automatically based on the route definition in routes catalog.js (/genre/:id) e.g.:
+// // GET request for one Genre.
+// router.get('/genre/:id', genre_controller.genre_detail);
+// Below req is Node IncommingMessage, req.params is Object {id: "5beea91b8cfe0caf73ba65a3"}, req.params.id is "5beea91b8cfe0caf73ba65a3"
 exports.genre_detail = function(req, res, next) {
     async.parallel({
         genre: function(callback) {
