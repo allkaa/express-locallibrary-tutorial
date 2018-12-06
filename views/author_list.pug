@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+    each author in author_list
+      li 
+        a(href=author.url) #{author.name} 
+        |  (#{author.date_of_birth} - #{author.date_of_death})
+        //- each author is defined as two lines, using the pipe for the second line
+        //- because if the author date_of_birth and date_of_death were on the previous line then it would be part of the hyperlink text comment.
+
+    else
+      li There are no authors.
