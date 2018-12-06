@@ -14,7 +14,8 @@ block content
         else
           span.text-warning #{val.status} 
         if val.status!='Available'
-          span  (Due: #{val.due_back} )
+          //- span  (Due: #{val.due_back} )
+          span  (Due: #{val.due_back_formatted} )
         //- use dot notation after a tag to assign a class. So span.text-success will be compiled to <span class="text-success">
         //- (and might also be written in Pug as span(class="text-success").
     else
