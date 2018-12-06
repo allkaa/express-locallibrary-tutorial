@@ -8,7 +8,7 @@ block content
       li 
         a(href=author.url) #{author.name} 
         //-|  (#{author.date_of_birth} - #{author.date_of_death})
-        |  (#{author.date_of_birth.dob_back_formatted} - #{author.date_of_death.dod_back_formatted})
+        |  (#{author.dob_back_formatted} - #{author.dod_back_formatted})
         //- each author is defined as two lines, using the pipe for the second line
         //- because if the author date_of_birth and date_of_death were on the previous line then it would be part of the hyperlink text comment.
 
