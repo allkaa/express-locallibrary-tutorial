@@ -33,11 +33,18 @@ AuthorSchema
   return '/catalog/author/' + this._id;
 });
 
-// Virtual property due_back_formatted 
+// Virtual property dob_back_formatted 
 AuthorSchema
-.virtual('due_back_formatted')
+.virtual('dob_back_formatted')
 .get(function () {
-  return moment(this.due_back).format('MMMM Do, YYYY');
+  return moment(this.date_of_birth).format('MMMM Do, YYYY');
+});
+
+// Virtual property dod_back_formatted 
+AuthorSchema
+.virtual('dod_back_formatted')
+.get(function () {
+  return moment(this.date_of_death).format('MMMM Do, YYYY');
 });
 
 //Export model
