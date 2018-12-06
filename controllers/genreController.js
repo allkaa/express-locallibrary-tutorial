@@ -1,9 +1,22 @@
 'use strict';
 var Genre = require('../models/genre');
 
+/* Default
 // Display list of all Genre.
 exports.genre_list = function(req, res) {
     res.send('NOT IMPLEMENTED: Genre list');
+};
+*/
+
+// Display list of all Genre.
+exports.genre_list = function(req, res, next) {
+    Genre.find() // find all models Genre with all properties.
+      //.sort([['family_name', 'ascending']])
+      .exec(function (err, list_genres) {
+        if (err) { return next(err); }
+        // Successful, so render result array list_genres with models Genre found.
+        res.render('genre_list', { title: 'Genre List', genre_list: list_genres });
+      });
 };
 
 // Display detail page for a specific Genre.
