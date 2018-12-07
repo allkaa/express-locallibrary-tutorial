@@ -33,7 +33,17 @@ exports.genre_detail = function(req, res) {
 // The ID of the required genre record is encoded at the end of the URL and extracted automatically based on the route definition in routes catalog.js (/genre/:id) e.g.:
 // // GET request for one Genre.
 // router.get('/genre/:id', genre_controller.genre_detail);
-// Below req is Node IncommingMessage, req.params is Object {id: "5beea91b8cfe0caf73ba65a3"}, req.params.id is "5beea91b8cfe0caf73ba65a3"
+// Below req param is Node IncommingMessage, req.params is Object {id: "5beea91b8cfe0caf73ba65a3"}, req.params.id is "5beea91b8cfe0caf73ba65a3"
+/*
+You might get an error similar to this:
+Cast to ObjectId failed for value " 5beea91b8cfe0caf73ba65a3" at path "_id" for model "Genre"
+This is a mongoose error coming from the req.params.id. To solve this problem, first you need to require mongoose on the genreController.js page like this:
+var mongoose = require('mongoose');
+Then use mongoose.Types.ObjectId() to convert the id to a that can be used. For example:
+exports.genre_detail = function(req, res, next) {
+    var id = mongoose.Types.ObjectId(req.params.id);  
+    ...
+*/
 exports.genre_detail = function(req, res, next) {
     async.parallel({
         genre: function(callback) {
