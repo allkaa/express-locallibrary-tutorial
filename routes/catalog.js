@@ -31,6 +31,19 @@ router.get('/book/:id/update', book_controller.book_update_get);
 // POST request to update Book.
 router.post('/book/:id/update', book_controller.book_update_post);
 
+/*
+Route parameters are named URL segments used to capture the values specified at their position in the URL.
+The named segments are prefixed with a colon and then the name e.g. /:your_parameter_name/.
+The captured values are stored in the req.params object using the parameter names as keys e.g. req.params.your_parameter_name.
+
+So for example, consider a URL encoded to contain information about users and books: http://localhost:3000/users/34/books/8989.
+We can extract this information as shown below, with the userId and bookId path parameters:
+router.get('/users/:userId/books/:bookId', function (req, res) {
+  // Access userId via: req.params.userId
+  // Access bookId via: req.params.bookId
+  res.send(req.params);
+})
+*/
 // GET request for one Book.
 router.get('/book/:id', book_controller.book_detail);
 
