@@ -3,10 +3,9 @@ extends layout
 block content
 
   h1 Author: #{author.name}
-
   //- p #{author.date_of_birth} - #{author.date_of_death}
-  
-  p #{author.dob} - #{author.dod}
+  //- using virtual properties:
+  p #{author.dob_back_formatted} - #{author.dod_back_formatted}
 
   div(style='margin-left:20px;margin-top:20px')
 
