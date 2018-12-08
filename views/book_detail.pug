@@ -7,7 +7,8 @@ block content
     a(href=book.author.url) #{book.author.name}
   p #[strong Summary:] #{book.summary}
   p #[strong ISBN:] #{book.isbn}
-  p #[strong Genre:]&nbsp;
+  p #[strong Genre:]&nbsp; 
+    //- &nbsp is non break space.
     //- Note: The list of genres associated with the book is implemented in the template as below.
     //- This adds a comma after every genre associated with the book except for the last one.
     each val, index in book.genre
