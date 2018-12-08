@@ -78,7 +78,7 @@ exports.book_detail = function(req, res, next) {
           .exec(callback);
         },
     }, function(err, results) { // callback function will be called after all parallel functions (book: and bool_instance) completes async
-        // results will be Object wirh properties e.g. { book_instance: Array(2) [model, model], book: model }
+        // results will be Object with properties e.g. { book_instance: Array(2) [model, model], book: model }
         if (err) { return next(err); }
         if (results.book==null) { // No results.
             var err = new Error('Book not found');

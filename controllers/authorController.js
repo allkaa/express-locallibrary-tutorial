@@ -1,5 +1,7 @@
 'use strict';
 var Author = require('../models/author');
+var async = require('async');
+var Book = require('../models/book');
 
 /* Default
 // Display list of all Authors.
@@ -19,9 +21,35 @@ exports.author_list = function(req, res, next) {
       });
 };
 
+/* Default
 // Display detail page for a specific Author.
 exports.author_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Author detail: ' + req.params.id);
+};
+*/
+
+// Display detail page for a specific Author.
+exports.author_detail = function(req, res, next) {
+    async.parallel({
+        author: function(callback) {
+            Author.findById(req.params.id) // find model Author for specific author id got thru router.get('/author/:id', author_controller.author_detail);
+              .exec(callback)
+        },
+        authors_books: function(callback) {
+          Book.find({ 'author': req.params.id },'title summary') // find all models Book having specific author id.
+          .exec(callback)
+        },
+    }, function(err, results) { // callback function will be called after all parallel functions (author: and authors_book) completes async
+        if (err) { return next(err); } // Error in API usage.
+        if (results.author==null) { // No results.
+            var err = new Error('Author not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render.
+        // //results will be Object with properties e.g. { authors_books: Array(2) [model, model], author: model }
+        res.render('author_detail', { title: 'Author Detail', author: results.author, author_books: results.authors_books } );
+    });
 };
 
 // Display Author create form on GET.
