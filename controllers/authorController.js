@@ -47,7 +47,7 @@ exports.author_detail = function(req, res, next) {
             return next(err);
         }
         // Successful, so render.
-        // //results will be Object with properties e.g. { authors_books: Array(2) [model, model], author: model }
+        // //results will be Object with properties e.g. { author: model, authors_books: Array(2) [model, model]}
         res.render('author_detail', { title: 'Author Detail', author: results.author, author_books: results.authors_books } );
     });
 };
