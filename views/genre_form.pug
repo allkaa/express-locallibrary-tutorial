@@ -16,3 +16,4 @@ block content
     ul
       for error in errors
         li!= error.msg
+        //-e.g. errors.array() -> Array(1) [Object] -> Array()[0] [Object] -> Object {location: "body", param: "name", value: "", msg: "Genre name required"}
