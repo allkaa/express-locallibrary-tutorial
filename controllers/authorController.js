@@ -107,7 +107,7 @@ exports.author_create_post = [
             .exec((err, found_author) => {
                 if (err) { return next(err); }
                 if (found_author) {
-                    res.redirect(found_autor.url)
+                    res.redirect(found_author.url)
                 }
                 else {
                     // Create an Author object with escaped and trimmed data.
