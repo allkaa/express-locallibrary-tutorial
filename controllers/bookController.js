@@ -125,27 +125,27 @@ exports.book_create_post = function(req, res) {
 
 // Handle book create on POST.
 exports.book_create_post = [
-    // Convert the genre to an array.
+    // 1. Convert the genre to an array.
     (req, res, next) => {
         if(!(req.body.genre instanceof Array)){
             if(typeof req.body.genre==='undefined')
-            req.body.genre=[];
+                req.body.genre=[];
             else
-            req.body.genre=new Array(req.body.genre);
+                req.body.genre=new Array(req.body.genre);
         }
-        next();
+        next(); // goto next step 2.
     },
 
-    // Validate fields.
+    // 2. Validate fields.
     body('title', 'Title must not be empty.').isLength({ min: 1 }).trim(),
     body('author', 'Author must not be empty.').isLength({ min: 1 }).trim(),
     body('summary', 'Summary must not be empty.').isLength({ min: 1 }).trim(),
     body('isbn', 'ISBN must not be empty').isLength({ min: 1 }).trim(),
   
-    // Sanitize fields (using wildcard).
+    // 3. Sanitize ALL fields (using wildcard).
     sanitizeBody('*').trim().escape(),
 
-    // Process request after validation and sanitization.
+    // 4. Process request after validation and sanitization.
     (req, res, next) => {
         
         // Extract the validation errors from a request.
@@ -177,6 +177,7 @@ exports.book_create_post = [
                 // Mark our selected genres as checked.
                 for (let i = 0; i < results.genres.length; i++) {
                     if (book.genre.indexOf(results.genres[i]._id) > -1) {
+                        // Current genre is selected. Add "checked" flag.
                         results.genres[i].checked='true';
                     }
                 }
