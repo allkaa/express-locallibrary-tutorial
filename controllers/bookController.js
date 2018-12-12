@@ -174,10 +174,10 @@ exports.book_create_post = [
             }, function(err, results) {
                 if (err) { return next(err); }
 
-                // Mark our selected genres as checked.
+                // Mark our selected genres in non-saved book (model Book) as checked.
                 for (let i = 0; i < results.genres.length; i++) {
                     if (book.genre.indexOf(results.genres[i]._id) > -1) {
-                        // Current genre is selected. Add "checked" flag.
+                        // Current genre is selected. Add "checked" property for later rendering in book_form.pug
                         results.genres[i].checked='true';
                     }
                 }
