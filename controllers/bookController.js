@@ -137,16 +137,16 @@ exports.book_create_post = [
         next(); // goto next step 2.
     },
 
-    // 2. Validate fields.
+    // 0. Validate fields subs - are activated at initial starting of server.
     body('title', 'Title must not be empty.').isLength({ min: 1 }).trim(),
     body('author', 'Author must not be empty.').isLength({ min: 1 }).trim(),
     body('summary', 'Summary must not be empty.').isLength({ min: 1 }).trim(),
     body('isbn', 'ISBN must not be empty').isLength({ min: 1 }).trim(),
   
-    // 3. Sanitize ALL fields (using wildcard).
+    // 0. Sanitize ALL fields (using wildcard). This subs are activated at initial starting of server.
     sanitizeBody('*').trim().escape(),
 
-    // 4. Process request after validation and sanitization.
+    // 2. Process request after validation and sanitization.
     (req, res, next) => {
         
         // Extract the validation errors from a request.
