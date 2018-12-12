@@ -183,6 +183,7 @@ exports.book_create_post = [
                     }
                 }
                 res.render('book_form', { title: 'Create Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() });
+                //res.render('book_form', { title: 'Create Book', authors: results.authors, genres: results.genres }); - for GET request without book: and errors:
             });
             return;
         }

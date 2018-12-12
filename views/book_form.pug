@@ -13,6 +13,7 @@ block content
       //-select#author.form-control(type='select', placeholder='Select author' name='author' required='true' )
       select#author.form-control(type='select', placeholder='Select author' name='author' )
         for author in authors
+          //- for GET request book will be undefined.
           if book
             option(value=author._id selected=(author._id.toString()==book.author ? 'selected' : false) ) #{author.name}
           else
@@ -37,6 +38,7 @@ block content
             label(for=genre._id) #{genre.name}
     button.btn.btn-primary(type='submit') Submit
 
+  //- for GET request errors will be undefined.
   if errors 
     ul
       for error in errors
