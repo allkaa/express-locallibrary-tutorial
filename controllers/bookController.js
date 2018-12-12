@@ -125,8 +125,9 @@ exports.book_create_post = function(req, res) {
 
 // Handle book create on POST.
 exports.book_create_post = [
-    // 1. Convert the genre to an array.
+    // 1. Convert the genre to an array. If no genres selected req.body.genre will be undefinded.
     (req, res, next) => {
+        // The instanceof operator tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
         if(!(req.body.genre instanceof Array)){
             if(typeof req.body.genre==='undefined')
                 req.body.genre=[];
