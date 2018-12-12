@@ -52,9 +52,7 @@ exports.bookinstance_detail = function(req, res, next) {
 exports.bookinstance_create_get = function(req, res) {
     res.send('NOT IMPLEMENTED: BookInstance create GET');
 };
-*/
 
-/*
 // Handle BookInstance create on POST.
 exports.bookinstance_create_post = function(req, res) {
     res.send('NOT IMPLEMENTED: BookInstance create POST');
