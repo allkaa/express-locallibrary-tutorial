@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 // POST user listening. For test use e.g.:
 // curl -d "post test" localhost:3000/users
 router.post('/', function(req, res, next) {
-  res.render('pugtest', { title: 'Express route for users POST', status: 'Undefinded' });
+  res.render('pugtest', { title: 'Express route for users POST', status: 'Available' });
 });
 
 module.exports = router;
