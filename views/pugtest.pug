@@ -9,6 +9,7 @@ html(lang='en')
     meta(charset='utf-8')
   body
     h1=title
+    var statInf = status
 
     form(method='POST' action='')
       div.form-group
@@ -63,7 +64,7 @@ html(lang='en')
         // return the value of the selected option
         console.log(select.options[select.selectedIndex].value);
       }
-      setSelect(locals.status);
+      setSelect(statInf);
 
     if errors 
       ul
