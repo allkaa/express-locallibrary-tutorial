@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express route for user GET' });
+  res.render('pugtest', { title: 'Express route for users GET', status: 'Undefinded' });
 //router.get('/cool', function(req, res, next) {
   //  res.send("You're so cool");
 });
@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 // POST user listening. For test use e.g.:
 // curl -d "post test" localhost:3000/users
 router.post('/', function(req, res, next) {
-  res.render('index', { title: 'Express route for user POST' });
+  res.render('pugtest', { title: 'Express route for users POST', status: 'Undefinded' });
 });
 
 module.exports = router;
