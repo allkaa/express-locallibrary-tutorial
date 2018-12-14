@@ -1,59 +1,60 @@
+//-extends layout
+
+//-block content
+
 doctype html
 html(lang='en')
   head
     title= title
     meta(charset='utf-8')
-//-extends layout
+  body
+    h1=title
 
-//-block content
-body
-  h1=title
+    form(method='POST' action='')
+      div.form-group
+        label(for='status') Status:
+        //-select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
+        if status === 'Available'
+          select#status.form-control(type='select' placeholder='Select status' name='status')
+            option(value='Maintenance') Maintenance
+            option(value='Available' selected) Available
+            option(value='Loaned') Loaned
+            option(value='Reserved') Reserved
+            option(value='Undefinded') Undefinded
+            //-p!= status
+        else if status === 'Maintenance'
+          select#status.form-control(type='select' placeholder='Select status' name='status')
+            option(value='Maintenance' selected) Maintenance
+            option(value='Available') Available
+            option(value='Loaned') Loaned
+            option(value='Reserved') Reserved
+            option(value='Undefinded') Undefinded
+        else if status === 'Loaned'
+          select#status.form-control(type='select' placeholder='Select status' name='status')
+            option(value='Maintenance') Maintenance
+            option(value='Available') Available
+            option(value='Loaned' selected) Loaned
+            option(value='Reserved') Reserved
+            option(value='Undefinded') Undefinded
+        else if status === 'Reserved'
+          select#status.form-control(type='select' placeholder='Select status' name='status')
+            option(value='Maintenance') Maintenance
+            option(value='Available') Available
+            option(value='Loaned') Loaned
+            option(value='Reserved' selected) Reserved
+            option(value='Undefinded') Undefinded
+        else
+          select#status.form-control(type='select' placeholder='Select status' name='status')
+            option(value='Maintenance') Maintenance
+            option(value='Available') Available
+            option(value='Loaned') Loaned
+            option(value='Reserved') Reserved
+            option(value='Undefinded' selected) Undefinded
+          //-p!= 'not defined'
 
-  form(method='POST' action='')
-    div.form-group
-      label(for='status') Status:
-      //-select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-      if status === 'Available'
-        select#status.form-control(type='select' placeholder='Select status' name='status')
-          option(value='Maintenance') Maintenance
-          option(value='Available' selected) Available
-          option(value='Loaned') Loaned
-          option(value='Reserved') Reserved
-          option(value='Undefinded') Undefinded
-        //-p!= status
-      else if status === 'Maintenance'
-        select#status.form-control(type='select' placeholder='Select status' name='status')
-          option(value='Maintenance' selected) Maintenance
-          option(value='Available') Available
-          option(value='Loaned') Loaned
-          option(value='Reserved') Reserved
-          option(value='Undefinded') Undefinded
-      else if status === 'Loaned'
-        select#status.form-control(type='select' placeholder='Select status' name='status')
-          option(value='Maintenance') Maintenance
-          option(value='Available') Available
-          option(value='Loaned' selected) Loaned
-          option(value='Reserved') Reserved
-          option(value='Undefinded') Undefinded
-      else if status === 'Reserved'
-        select#status.form-control(type='select' placeholder='Select status' name='status')
-          option(value='Maintenance') Maintenance
-          option(value='Available') Available
-          option(value='Loaned') Loaned
-          option(value='Reserved' selected) Reserved
-          option(value='Undefinded') Undefinded
-      else
-        select#status.form-control(type='select' placeholder='Select status' name='status')
-          option(value='Maintenance') Maintenance
-          option(value='Available') Available
-          option(value='Loaned') Loaned
-          option(value='Reserved') Reserved
-          option(value='Undefinded' selected) Undefinded
-        //-p!= 'not defined'
+      button.btn.btn-primary(type='submit') Submit
 
-    button.btn.btn-primary(type='submit') Submit
-
-  if errors 
-    ul
-      for error in errors
-        li!= error.msg
+    if errors 
+      ul
+        for error in errors
+          li!= error.msg
