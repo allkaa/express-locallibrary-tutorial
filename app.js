@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site.
+var pugtestRouter = require('./routes/pugtest');  //Import routes for "catalog" area of site.
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter); // e.g. http://localhost:3000/ url
 app.use('/users', usersRouter); // e.g. http://localhost:3000/users url
 app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
+app.use('/pugtest', pugtestRouter);  // Add catalog routes to middleware chain.
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.send('Error 404 - Page not found!');
