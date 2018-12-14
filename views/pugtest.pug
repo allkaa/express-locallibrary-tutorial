@@ -36,32 +36,40 @@ html(lang='en')
         let status = statInfo.innerText;
         console.log('status to set ' + status);
         let select = document.getElementById('status');
-        // return the index of the selected option
-        console.log(select.selectedIndex);
-        // return the value of the selected option
-        console.log(select.options[select.selectedIndex].value);
+        // return the index of the initially selected option
+        //console.log(select.selectedIndex);
+        // return the value of the initially selected option
+        //console.log(select.options[select.selectedIndex].value);
+        console.log(`Initially ` + select.selectedIndex + ': ' + select.options[select.selectedIndex].value);
+        /*
         for (let opt in select) {
           if (status === 'Maintenance') {
-            opt.value = 'Maintenance';
-            select.selectedIndex = 0;
+            opt.value = 'Maintenance'; select.selectedIndex = 0;
           }
           else if (status === 'Available') {
-            opt.value = 'Available';
-            select.selectedIndex = 1;
+            opt.value = 'Available'; select.selectedIndex = 1;
           }
-        }
           else if (status === 'Loaned') {
-            opt.value = 'Loaned';
-            select.selectedIndex = 2;
+            opt.value = 'Loaned'; select.selectedIndex = 2;
           }
           else if (status === 'Reserved') {
-            opt.value = 'Reserved';
-            select.selectedIndex = 3;
+            opt.value = 'Reserved'; select.selectedIndex = 3;
           }
           else if (status === 'Undefinded') {
-            opt.value = 'Undefinded';
-            select.selectedIndex = 4;
+            opt.value = 'Undefinded'; select.selectedIndex = 4;
           }
+        */
+        let statArr = ['Maintenance', 'Available', 'Loaned', 'Reserved', 'Undefinded'];
+        for (let i = 0; i < statArr.length; i++) {
+          if (statArr[i] == status) {
+            select.selectedIndex = i; select.options[select.selectedIndex].value = status;
+          }
+        }
+        // return the index of the selected option
+        //console.log(select.selectedIndex);
+        // return the value of the selected option
+        //console.log(select.options[select.selectedIndex].value);
+        console.log(`Set ` + select.selectedIndex + ': ' + select.options[select.selectedIndex].value);
       }
       setSelect('statinf');
 
