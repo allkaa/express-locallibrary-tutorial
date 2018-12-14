@@ -17,6 +17,6 @@ var async = require('async');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
-exports.pugtest = function(req, res) {
+exports.index = function(req, res) {
     res.send('NOT IMPLEMENTED: test');
 };
