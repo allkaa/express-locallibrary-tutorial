@@ -11,7 +11,7 @@ var book_instance_controller = require('../controllers/bookinstanceController');
 /// TEST ROUTES ///
 
 // GET test home page.
-router.get('/', test.index);
+router.get('/', pugtest.index);
 
 /*
 // GET users listing.
