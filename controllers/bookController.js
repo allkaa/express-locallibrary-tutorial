@@ -17,11 +17,6 @@ var async = require('async');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
-exports.test = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book list');
-};
-
-
 exports.index = function(req, res) {   
     async.parallel({
         book_count: function(callback) {
