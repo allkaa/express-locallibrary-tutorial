@@ -9,7 +9,11 @@ html(lang='en')
     meta(charset='utf-8')
   body
     h1=title
-    var statInf = status
+    //- directly use input data property:
+    //-p.form-control(id='statinf')!= status
+    //- or use thru pug variabe:
+    - var stat = status
+    p.form-control(id='statinf')!= stat
 
     form(method='POST' action='')
       div.form-group
@@ -56,15 +60,16 @@ html(lang='en')
       button.btn.btn-primary(type='submit') Submit
 
     script.
-      function setSelect(statusSet) {
-        console.log('status set ' + statusSet);
-        var select = document.getElementById('status');
+      function setSelect(elemId) {
+        let statInfo = document.getElementById(elemId);
+        console.log('status set ' + statInfo.innerText);
+        let select = document.getElementById('status');
         // return the index of the selected option
         console.log(select.selectedIndex);
         // return the value of the selected option
         console.log(select.options[select.selectedIndex].value);
       }
-      setSelect(statInf);
+      setSelect('statinf');
 
     if errors 
       ul
