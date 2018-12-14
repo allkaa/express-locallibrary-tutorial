@@ -4,8 +4,8 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express route for GET' });
-  res.redirect('/users');
-  //res.redirect('/catalog');
+  //res.redirect('/users');
+  res.redirect('/catalog');
 });
 
 module.exports = router;
