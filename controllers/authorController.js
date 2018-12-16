@@ -166,7 +166,7 @@ exports.author_delete_get = function(req, res, next) {
 exports.author_delete_post = function(req, res, next) {
     async.parallel({
         author: function(callback) {
-          Author.findById(req.body.authorid).exec(callback)
+          Author.findById(req.body.authorid).exec(callback) // find model Author by id got thru input#authorid.form-control(type='hidden', name='authorid', required='true', value=author._id)
         },
         authors_books: function(callback) {
           Book.find({ 'author': req.body.authorid }).exec(callback)
