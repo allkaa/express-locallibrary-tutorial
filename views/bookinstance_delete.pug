@@ -18,7 +18,8 @@ block content
   if bookinstance.status!='Available'
     //-p #[strong Due back:] #{bookinstance.due_back}
     p #[strong Due back:] #{bookinstance.due_back_formatted}  p Do you really want to delete this Bookinstance?
-    
+
+  p Do you really want to delete this Author?  
   form(method='POST' action='')
     div.form-group
       input#bookinstanceid.form-control(type='hidden',name='bookinstanceid', required='true', value=bookinstance._id )

@@ -136,6 +136,7 @@ exports.bookinstance_delete_post = function(req, res) {
 */
 
 // Display BookInstance delete form on GET.
+// router.post('/bookinstance/:id/delete', book_instance_controller.bookinstance_delete_post);
 exports.bookinstance_delete_get = function(req, res) {
     BookInstance.findById(req.params.id) // find model BookInstance by id got from router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
     .populate('book')
@@ -151,8 +152,9 @@ exports.bookinstance_delete_get = function(req, res) {
 };
 
 // Handle BookInstance delete on POST.
+// router.post('/bookinstance/:id/update', book_instance_controller.bookinstance_update_post);
 exports.bookinstance_delete_post = function(req, res) {
-    BookInstance.findById(req.params.bookinstanceid) // find model BookInstance by id got from router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
+    BookInstance.findById(req.params.id) // find model BookInstance by id got from router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
     .populate('book')
     .exec(function (err, bookinstance) {
       if (err) { return next(err); }
