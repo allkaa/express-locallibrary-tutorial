@@ -13,7 +13,11 @@ html(lang='en')
     //-p.form-control(id='statinf')!= status
     //- or use thru pug variabe:
     - var stat = status
-    p.form-control(id='statinf' hidden)!= stat
+    //-<p class="form-control" id="statinf" hidden="">Undefinded</p>
+    //-p.form-control(id='statinf' hidden)!= stat
+    //- or
+    p#statinf.form-control(hidden)!= stat
+    //-<p class="form-control" id="statinf" hidden="">Undefinded</p>
 
     form(method='POST' action='')
       div.form-group
