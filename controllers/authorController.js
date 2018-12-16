@@ -142,6 +142,7 @@ exports.author_delete_post = function(req, res) {
 */
 
 // Display Author delete form on GET.
+// router.get('/author/:id/delete', author_controller.author_delete_get);
 exports.author_delete_get = function(req, res, next) {
     async.parallel({
         author: function(callback) {
@@ -161,6 +162,7 @@ exports.author_delete_get = function(req, res, next) {
 };
 
 // Handle Author delete on POST.
+// router.post('/author/:id/delete', author_controller.author_delete_post);
 exports.author_delete_post = function(req, res, next) {
     async.parallel({
         author: function(callback) {

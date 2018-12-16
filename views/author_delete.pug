@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 #{title}: #{author.name}
-  p= author.lifespan
+  p #{author.dob_back_formatted} - #{author.dod_back_formatted}
   
   if author_books.length
   
