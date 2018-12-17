@@ -3,7 +3,7 @@ extends layout
 block content
   h1 #{title}: #{book.title}
   
-  if book_bookinstances
+  if book_bookinstances.length
 
     p #[strong Delete the following book instances before attempting to delete this book.]
   
@@ -11,13 +11,13 @@ block content
       h4 Book Instances
     
       dl
-      each book in genre_books
+      each bookinstance in book_bookinstances
         dt 
-          a(href=book.url) #{book.title}
-        dd #{book.summary}
+          a(href=bookinstance.url) #{bookinstance._id}
+        dd #{bookinstance.imprint}
 
   else
-    p Do you really want to delete this Genre?
+    p Do you really want to delete this Book?
     
     form(method='POST' action='')
       div.form-group
