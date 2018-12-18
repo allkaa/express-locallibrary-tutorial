@@ -15,7 +15,9 @@ block content
         for author in authors
           //- for GET request book will be undefined.
           if book
-            option(value=author._id selected=(author._id.toString()==book.author ? 'selected' : false) ) #{author.name}
+            //-option(value=author._id selected=(author._id.toString()==book.author ? 'selected' : false)) #{author.name}
+            //- Handle GET form, where book.author is an object, and POST form, where book.author is a string.
+            option(value=author._id selected=(author._id.toString()==book.author._id || author._id.toString()==book.author ? 'selected' : false)) #{author.name}
           else
             option(value=author._id) #{author.name}
     div.form-group
