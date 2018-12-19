@@ -62,17 +62,17 @@ exports.author_create_get = function(req, res) {
 };
 */
 
-// Display Author create form on GET.
-exports.author_create_get = function(req, res, next) {       
-    res.render('author_form', { title: 'Create Author'}); // render author_form.pug with title.
-};
-
 /* Default:
 // Handle Author create on POST.
 exports.author_create_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Author create POST');
 };
 */
+
+// Display Author create form on GET.
+exports.author_create_get = function(req, res, next) {       
+    res.render('author_form', { title: 'Create Author'}); // render author_form.pug with title.
+};
 
 // Handle Author create on POST.
 exports.author_create_post = [
@@ -190,6 +190,7 @@ exports.author_delete_post = function(req, res, next) {
     });
 };
 
+/*
 // Display Author update form on GET.
 exports.author_update_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Author update GET');
@@ -199,3 +200,69 @@ exports.author_update_get = function(req, res) {
 exports.author_update_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Author update POST');
 };
+*/
+
+// Display Author create form on GET.
+//router.get('/author/:id/update', author_controller.author_update_get);
+exports.author_update_get = function(req, res, next) {       
+    Author.findById(req.params.id) // find genre by id.
+    .exec( function(err, found_author) {
+        if (err) { return next(err); }
+        if (found_author) {
+          // Author exista.
+          res.render('author_form', { title: 'Update Author', author: found_author });
+        }
+        else {
+            res.redirect('/catalog/authors');
+        }
+    });
+
+};
+
+// Handle Author create on POST.
+//router.post('/author/:id/update', author_controller.author_update_post);
+exports.author_update_post = [
+
+    // Validate fields.
+    body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.')
+        .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
+    body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601(),
+    body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601(),
+
+    // Sanitize fields.
+    sanitizeBody('first_name').trim().escape(),
+    sanitizeBody('family_name').trim().escape(),
+    sanitizeBody('date_of_birth').toDate(),
+    sanitizeBody('date_of_death').toDate(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // There are errors. Render author_form.pug with title and sanitized values/errors messages.
+            res.render('author_form', { title: 'Create Author', author: req.body, errors: errors.array() });
+            return;
+        }
+        else {
+            // Data from POST form are create an Author object with escaped and trimmed data.
+            var author = new Author(
+                {
+                    first_name: req.body.first_name,
+                    family_name: req.body.family_name,
+                    date_of_birth: req.body.date_of_birth,
+                    date_of_death: req.body.date_of_death
+                }
+            );
+            author._id = req.params.id
+            // Data from POST form are valid. Update the record.
+            Genre.findByIdAndUpdate(req.params.id, author, {}, function (err,theauthor) {
+                if (err) { return next(err); }
+                // Successful - redirect to genre detail page.
+                res.redirect(theauthor.url);
+            });
+        } // end of data from POST from are valid.
+    } // end of Process request after validation and sanitization..
+];

@@ -257,8 +257,7 @@ exports.genre_update_post =  [
         return;
       }
       else {
-        // Data from form is valid.
-        // Data from form is valid. Update the record.
+        // Data from POST form is valid. Update the record.
         Genre.findByIdAndUpdate(req.params.id, genre, {}, function (err,thegenre) {
             if (err) { return next(err); }
             // Successful - redirect to genre detail page.
