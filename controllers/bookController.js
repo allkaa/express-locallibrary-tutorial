@@ -112,7 +112,7 @@ exports.book_create_get = function(req, res, next) {
         },
     }, function(err, results) {
         if (err) { return next(err); }
-        res.render('book_form', { title: 'Create Book', authors: results.authors, genres: results.genres });
+        res.render('book_form', { title: 'Create Book', authors: results.authors, genres: results.genres }); // no book at all.
     });
 };
 
@@ -155,7 +155,7 @@ exports.book_create_post = [
         // Create a Book object with escaped and trimmed data.
         var book = new Book(
           { title: req.body.title,
-            author: req.body.author,
+            author: req.body.author, // book.author is ObjectID object.
             summary: req.body.summary,
             isbn: req.body.isbn,
             genre: req.body.genre
@@ -301,7 +301,7 @@ exports.book_update_get = function(req, res, next) {
                     }
                 }
             }
-            res.render('book_form', { title: 'Update Book', authors:results.authors, genres:results.genres, book: results.book });
+            res.render('book_form', { title: 'Update Book', authors:results.authors, genres:results.genres, book: results.book }); //  book.author is an model Author object thru population.
         }
     );
 };
@@ -343,7 +343,7 @@ exports.book_update_post = [
         // Create a Book object with escaped/trimmed data and old id.
         var book = new Book(
           { title: req.body.title,
-            author: req.body.author,
+            author: req.body.author, // book.author is ObjectID object.
             summary: req.body.summary,
             isbn: req.body.isbn,
             genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre,
@@ -369,13 +369,13 @@ exports.book_update_post = [
                         results.genres[i].checked='true'; // add property .checked='true'
                     }
                 }
-                res.render('book_form', { title: 'Update Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() });
+                res.render('book_form', { title: 'Update Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() }); //book.author is ObjectID object.
             });
             return;
         }
         else {
             // Data from form is valid. Update the record.
-            Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
+            Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) { // book.author is ObjectID object.
                 if (err) { return next(err); }
                 // Successful - redirect to book detail page.
                 res.redirect(thebook.url);
