@@ -243,7 +243,7 @@ exports.author_update_post = [
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             // There are errors. Render author_form.pug with title and sanitized values/errors messages.
-            res.render('author_form', { title: 'Create Author', author: req.body, errors: errors.array() });
+            res.render('author_form', { title: 'Update Author', author: req.body, errors: errors.array() });
             return;
         }
         else {
@@ -258,7 +258,7 @@ exports.author_update_post = [
             );
             author._id = req.params.id
             // Data from POST form are valid. Update the record.
-            Genre.findByIdAndUpdate(req.params.id, author, {}, function (err,theauthor) {
+            Author.findByIdAndUpdate(req.params.id, author, {}, function (err, theauthor) {
                 if (err) { return next(err); }
                 // Successful - redirect to genre detail page.
                 res.redirect(theauthor.url);
