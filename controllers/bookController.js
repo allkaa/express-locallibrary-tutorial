@@ -346,9 +346,10 @@ exports.book_update_post = [
             author: req.body.author, // book.author is ObjectID object.
             summary: req.body.summary,
             isbn: req.body.isbn,
-            genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre,
-            _id:req.params.id // NB! This is required, or a new ID will be assigned!
+            genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre
+            //_id:req.params.id // NB! This is required, or a new ID will be assigned!
            });
+        book._id = req.params.id  // NB! This is required, or a new ID will be assigned!
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/error messages.

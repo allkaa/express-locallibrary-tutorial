@@ -246,9 +246,9 @@ exports.genre_update_post =  [
       var genre = new Genre(
         { 
             name: req.body.name,
-            _id:req.params.id // NB! This is required, or a new ID will be assigned!
         }
       );
+      genre._id = req.params.id;
   
       if (!errors.isEmpty()) {
         // There are errors. Render the form again with sanitized values/error messages.
