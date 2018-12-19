@@ -3,6 +3,9 @@ extends layout
 block content
   h1=title
 
+  p !{author.date_of_birth} birthday
+  p !{author.date_of_death} death
+
   form(method='POST' action='')
     div.form-group
       label(for='first_name') First Name:
@@ -13,9 +16,10 @@ block content
       //-<input class="form-control" id="family_name" placeholder="Family name (surname)" name="family_name" required="true" value="" type="text">
     div.form-group
       label(for='date_of_birth') Date of birth:
-      input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===author ? '' : author.date_of_birth) )
+      input#date_of_birth.form-control(type='datetime-local' name='date_of_birth' value=(undefined===author ? '' : author.dob) )
+      //-input#date_of_birth.form-control(type='date' name='date_of_birth' value=author.date_of_birth )
       label(for='date_of_death') Date of death:
-      input#date_of_death.form-control(type='date' name='date_of_death' value=(undefined===author ? '' : author.date_of_death) )
+      input#date_of_death.form-control(type='datetime-local' name='date_of_death' value=(undefined===author ? '' : author.dod) )
     button.btn.btn-primary(type='submit') Submit
   if errors 
     ul

@@ -209,7 +209,7 @@ exports.author_update_get = function(req, res, next) {
     .exec( function(err, found_author) {
         if (err) { return next(err); }
         if (found_author) {
-          // Author exista.
+          // Author exists.
           res.render('author_form', { title: 'Update Author', author: found_author });
         }
         else {
