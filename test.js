@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * 
  * @param {*} prevValue 
@@ -21,9 +20,21 @@ const callback2 = (prevValue, currentValue, currIndex, arrRef) => {
   return prevValue + currentValue;
 }
 
+/*
 let intArr = [10, 11, 12];
 let initValue = 1000;
 let reduced = intArr.reduce(callback, initValue);
 let reduced2 = intArr.reduce(callback2);
 
 console.log(reduced, reduced2);
+*/
+
+let author = true;
+var dayOfBirth, dayOfDeath, dbf, ddf;
+if (author) {
+  dayOfBirth = new Date();
+  dayOfDeath = new Date();
+}
+dbf = dayOfBirth.getFullYear() + `-` + (dayOfBirth.getMonth()+1) + `-` + dayOfBirth.getDate()
+console.log(dbf);
+console.log(`end of program`);
