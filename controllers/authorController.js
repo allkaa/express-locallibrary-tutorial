@@ -260,7 +260,7 @@ exports.author_update_post = [
             // Data from POST form are valid. Update the record.
             Author.findByIdAndUpdate(req.params.id, author, {}, function (err, theauthor) {
                 if (err) { return next(err); }
-                // Successful - redirect to genre detail page.
+                // Successful - redirect to updated detail page.
                 res.redirect(theauthor.url);
             });
         } // end of data from POST from are valid.

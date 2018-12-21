@@ -284,11 +284,11 @@ exports.bookinstance_update_post = [
         }
         else {
             // Data from form is valid.
-            bookinstance.save(function (err) {
+            BookInstance.findByIdAndUpdate(req.params.id, bookinstance, {}, function (err, thebookinstance) {
                 if (err) { return next(err); }
-                   // Successful - redirect to new record.
-                   res.redirect(bookinstance.url);
-                });
+                   // Successful - redirect to updated deatil document page.
+                   res.redirect(thebookinstance.url);
+            });
         }
     }
 ];

@@ -11,7 +11,7 @@ block content
         for book in book_list
           if bookinstance
             //- bookinstance.book.toString() is book._id selected for bookinstance. Mehtod toSting() render id sting from ObjectID object of model.
-            - console.log(bookinstance.book.toString() + ` vs. ` + book._id.toString());
+            //- console.log(bookinstance.book.toString() + ` vs. ` + book._id.toString());
             option(value=book._id selected=(bookinstance.book.toString()==book._id.toString() ? 'selected' : false)) #{book.title}
           else
             option(value=book._id) #{book.title}
