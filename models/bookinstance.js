@@ -26,5 +26,12 @@ BookInstanceSchema
   return moment(this.due_back).format('MMMM Do, YYYY');
 });
 
+// Virtual property dob_back_formatted 
+AuthorSchema
+.virtual('dueb')
+.get(function () {
+  return this.due_back ? moment(this.due_back).format('YYYY-MM-DD') : '';
+});
+
 //Export model
 module.exports = mongoose.model('BookInstance', BookInstanceSchema);

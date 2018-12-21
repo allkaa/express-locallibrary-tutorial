@@ -1,6 +1,7 @@
 'use strict';
 var BookInstance = require('../models/bookinstance');
 var Book = require('../models/book');
+var async = require('async');
 
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -172,12 +173,69 @@ exports.bookinstance_delete_post = function(req, res) {
 };
 
 
+/*
 // Display BookInstance update form on GET.
 exports.bookinstance_update_get = function(req, res) {
     res.send('NOT IMPLEMENTED: BookInstance update GET');
 };
 
 // Handle bookinstance update on POST.
+exports.bookinstance_update_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance update POST');
+};
+*/
+
+/*
+// Display BookInstance update form on GET.
+//router.get('/bookinstance/:id/update', book_instance_controller.bookinstance_update_get);
+exports.bookinstance_update_get = function(req, res) {
+    BookInstance.findById(req.params.id) // find model BookInstance by id got from router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
+    .populate('book')
+    .exec(function (err, bookinstance) {
+        if (err) { return next(err); }
+        if (bookinstance==null) { // No results.
+            res.redirect('/catalog/bookinstances');
+        }
+        // Successful, so render.
+        // result as bookinstance will be model BookInstance populated with model Book
+        Book.find({},'title') // find all models Book with ALL properties.
+        .exec(function (err, books) {
+            if (err) { return next(err); }
+            // Successful, so render.
+            //res.render('bookinstance_form', {title: 'Update BookInstance', book_list:books, status: 'Undefinded'});
+            res.render('bookinstance_form', { title: 'Update BookInstance', book_list : books, selected_book : bookinstance.book.id, bookinstance:bookinstance, status: bookinstance.status });
+        })
+    });
+}
+*/
+
+// Display BookInstance update form on GET.
+//router.get('/bookinstance/:id/update', book_instance_controller.bookinstance_update_get);
+exports.bookinstance_update_get = function(req, res) {
+    async.parallel({
+        bookinstance: function(callback) {
+            BookInstance.findById(req.params.id) // find model BookInstance
+              .exec(callback)
+        },
+        book_list: function(callback) {
+          Book.find({},'title') // find all models Book with ALL properties.
+          .exec(callback)
+        },
+    }, function(err, results) { // callback function will be called after all parallel functions (bookinstance and book_list) completes async
+        if (err) { return next(err); } // Error in API usage.
+        if (results.bookinstance==null) { // No results.
+            var err = new Error('BookInstance not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render.
+        // //results will be Object with properties e.g. { author: model, authors_books: Array(2) [model, model]}
+        res.render('bookinstance_form', { title: 'Update BookInstance', book_list : books, selected_book : bookinstance.book.id, bookinstance:bookinstance, status: bookinstance.status });
+    }); // end of async parallel.
+}
+
+// Handle bookinstance update on POST.
+//router.post('/bookinstance/:id/update', book_instance_controller.bookinstance_update_post);
 exports.bookinstance_update_post = function(req, res) {
     res.send('NOT IMPLEMENTED: BookInstance update POST');
 };
