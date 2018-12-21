@@ -16,7 +16,10 @@ block content
           //- for GET request book will be undefined.
           if book
             //-option(value=author._id selected=(author._id.toString()==book.author ? 'selected' : false)) #{author.name}
-            //- Handle GET form where book.author is an model object and book.author._id must be used to get ObjectID, and POST form where book.author is ObjectID object itself (not a string).
+            //- Handle GET form where book.author is an model object and book.author._id is string, and POST form where book.author is ObjectID object itself.
+            - console.log(`author._id.toString() ` + author._id.toString());
+            - console.log(`book.author._id ` + book.author._id);
+            - console.log(`book.author ` + book.author);
             option(value=author._id selected=(author._id.toString()==book.author._id || author._id.toString()==book.author ? 'selected' : false)) #{author.name}
           else
             option(value=author._id) #{author.name}

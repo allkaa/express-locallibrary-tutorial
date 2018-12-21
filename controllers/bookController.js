@@ -351,7 +351,7 @@ exports.book_update_post = [
            });
         book._id = req.params.id  // NB! This is required, or a new ID will be assigned!
 
-        if (!errors.isEmpty()) {
+        if (!errors.isEmpty()) { // !errors.isEmpty()
             // There are errors. Render form again with sanitized values/error messages.
 
             // Get all authors and genres for form.
@@ -372,7 +372,7 @@ exports.book_update_post = [
                 }
                 res.render('book_form', { title: 'Update Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() }); //book.author is ObjectID object.
             });
-            return;
+            return; // immediate return leaving asyn to work.
         }
         else {
             // Data from form is valid. Update the record.
@@ -382,5 +382,5 @@ exports.book_update_post = [
                 res.redirect(thebook.url);
             });
         }
-    }
+    } // end of Process request after validation and sanitization.
 ];
