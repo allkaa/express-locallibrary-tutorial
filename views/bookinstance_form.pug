@@ -10,6 +10,8 @@ block content
       select#book.form-control(type='select' placeholder='Select book' name='book')
         for book in book_list
           if bookinstance
+            //- bookinstance.book.toString() is book._id selected for bookinstance. Mehtod toSting() render id sting from ObjectID object of model.
+            - console.log(bookinstance.book.toString() + ` vs. ` + book._id.toString());
             option(value=book._id selected=(bookinstance.book.toString()==book._id.toString() ? 'selected' : false)) #{book.title}
           else
             option(value=book._id) #{book.title}
@@ -20,7 +22,8 @@ block content
       input#imprint.form-control(type='text' placeholder='Publisher and date information' name='imprint' value=(undefined===bookinstance ? '' : bookinstance.imprint))
     div.form-group
       label(for='due_back') Date when book available:
-      input#due_back.form-control(type='date' name='due_back' value=(undefined===bookinstance ? '' : bookinstance.due_back))
+      //-input#due_back.form-control(type='date' name='due_back' value=(undefined===bookinstance ? '' : bookinstance.due_back))
+      input#due_back.form-control(type='date' name='due_back' value=(undefined===bookinstance ? '' : bookinstance.dueb))
             
     div.form-group
       label(for='status') Status:
