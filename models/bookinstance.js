@@ -27,7 +27,7 @@ BookInstanceSchema
 });
 
 // Virtual property dob_back_formatted 
-AuthorSchema
+BookInstanceSchema
 .virtual('dueb')
 .get(function () {
   return this.due_back ? moment(this.due_back).format('YYYY-MM-DD') : '';
