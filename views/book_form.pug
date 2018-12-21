@@ -15,12 +15,17 @@ block content
         for author in authors
           //- for GET request book will be undefined.
           if book
-            //-option(value=author._id selected=(author._id.toString()==book.author ? 'selected' : false)) #{author.name}
-            //- Handle GET form where book.author is an model object and book.author._id is string, and POST form where book.author is ObjectID object itself.
-            - console.log(`author._id.toString() ` + author._id.toString());
-            - console.log(`book.author._id ` + book.author._id);
-            - console.log(`book.author ` + book.author);
-            option(value=author._id selected=(author._id.toString()==book.author._id || author._id.toString()==book.author ? 'selected' : false)) #{author.name}
+            //- Handle GET form where book.author is an model object and book.author._id is ObjectID and gives string in comparing, and POST form where book.author is ObjectID object and gives string in comparing.
+            //- var bln;
+            //- bln = author._id.toString()==book.author._id; // true for both GET and POST.
+            //- console.log(`author._id.toString()==book.author._id ` + bln)
+            //- bln = author._id.toString()==book.author; // false for GET, true for POST.
+            //- console.log(`author._id.toString()==book.author ` + bln)
+            //- console.log(`author._id.toString() ` + author._id.toString());
+            //- console.log(`book.author._id ` + book.author._id);
+            //- console.log(`book.author ` + book.author);
+            option(value=author._id selected=(author._id.toString()==book.author._id ? 'selected' : false)) #{author.name}
+            //option(value=author._id selected=(author._id.toString()==book.author._id || author._id.toString()==book.author ? 'selected' : false)) #{author.name}
           else
             option(value=author._id) #{author.name}
     div.form-group
