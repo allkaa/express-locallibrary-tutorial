@@ -19,7 +19,8 @@ const fs = require('fs');
 //var port = normalizePort(process.env.PORT || '3000');
 var port = normalizePort(process.env.PORT || '8081');
 app.set('port', port);
-app.set('hostname', 'unl.test');
+//app.set('hostname', 'unl.test'); // does not work!!!
+const hostname =  'unl.test';
 
 /**
  * Create HTTP server.
