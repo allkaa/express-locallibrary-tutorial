@@ -8,7 +8,8 @@ console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV);
 
 var app = require('../app');
 var debug = require('debug')('express-locallibrary-tutorial:server');
-var http = require('http');
+//var http = require('http');
+const http = require('https');
 
 /**
  * Get port from environment and store in Express.
@@ -16,18 +17,28 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+app.set('hostname', 'unl.test');
 
 /**
  * Create HTTP server.
+ * Create HTTPS server.
  */
 
-var server = http.createServer(app);
+const options = {
+    pfx: fs.readFileSync('./unl.test.pfx'),
+    passphrase: 'unl'
+  };
+
+//var server = http.createServer(app);
+var server = http.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+//server.listen(port);
+server.listen(port, hostname);
+// Listen specific port defined in /etc/hosts file for hostname e.g. unl.test 10.8.194.191
 server.on('error', onError);
 server.on('listening', onListening);
 
