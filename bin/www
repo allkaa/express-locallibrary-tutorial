@@ -10,6 +10,7 @@ var app = require('../app');
 var debug = require('debug')('express-locallibrary-tutorial:server');
 //var http = require('http');
 const http = require('https');
+const fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
