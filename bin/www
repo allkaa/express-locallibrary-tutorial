@@ -38,10 +38,10 @@ var server = http.createServer(options, app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 //server.listen(port);
+
+// Listen specific HTTPS port defined in /etc/hosts file for hostname e.g. unl.test 10.8.194.191
 server.listen(port, hostname);
-// Listen specific port defined in /etc/hosts file for hostname e.g. unl.test 10.8.194.191
 server.on('error', onError);
 server.on('listening', onListening);
 
